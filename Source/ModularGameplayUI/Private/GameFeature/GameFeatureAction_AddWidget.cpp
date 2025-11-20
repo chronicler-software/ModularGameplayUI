@@ -14,6 +14,8 @@
 #endif
 
 #include "UI/ModularGameplayHUD.h"
+#include "UI/ModularGameplayLayout.h"
+#include "UI/ModularLayoutInterface.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(GameFeatureAction_AddWidget)
 
@@ -153,7 +155,17 @@ void UGameFeatureAction_AddWidgets::AddWidgets(AActor* Actor, FPerContextData& A
 		{
 			if (const TSubclassOf<UCommonActivatableWidget> ConcreteWidgetClass = LayoutClass.Get())
 			{
-				LayoutsAdded.Add(UCommonUIExtensions::PushContentToLayer_ForPlayer(LocalPlayer, LayerID, ConcreteWidgetClass));
+				UCommonActivatableWidget* CreatedWidget = UCommonUIExtensions::PushContentToLayer_ForPlayer(LocalPlayer, LayerID, ConcreteWidgetClass);
+				LayoutsAdded.Add(CreatedWidget);
+
+				if (UModularGameplayLayout* NewLayout = Cast<UModularGameplayLayout>(CreatedWidget))
+				{
+					if (IModularLayoutInterface* LayoutInterface = Cast<IModularLayoutInterface>(Actor))
+					{
+						LayoutInterface->SetModularGameplayLayout(NewLayout);
+					}
+				}
+
 			}
 		}
 
