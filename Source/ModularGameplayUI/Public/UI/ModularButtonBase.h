@@ -13,7 +13,7 @@ struct FFrame;
  * Provides buttons that can be responsive to input method or other triggers.
  */
 UCLASS(Abstract, BlueprintType, Blueprintable)
-class UModularButtonBase : public UCommonButtonBase
+class MODULARGAMEPLAYUI_API UModularButtonBase : public UCommonButtonBase
 {
 	GENERATED_BODY()
 
