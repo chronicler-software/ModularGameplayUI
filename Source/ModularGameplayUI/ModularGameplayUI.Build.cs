@@ -47,6 +47,8 @@ public class ModularGameplayUI : ModuleRules
 				"GameFeatures",
 				"GameplayAbilities",
 				"ModularGameplay",
+				"ModularGameplayAbilities",
+				"ModularGameplayActors",
 				"ModularGameplayData",
 				"ModularGameplayExperiences",
 				"Slate",
